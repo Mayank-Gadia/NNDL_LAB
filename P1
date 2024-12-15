@@ -1,0 +1,43 @@
+'''Program 1: Implement a perceptron model in Python to simulate the behavior of an AND gate and OR gate.
+   Use sigmoid activation function and a single perceptron.'''
+
+import numpy as np
+
+# Input values for the logic gate
+x = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])  # Inputs
+y = np.array([0, 0, 0, 1])  # Target outputs for AND gate
+
+# Initialize weights, bias, and learning rate
+w1 = 0.2  # Weight for the first input
+w2 = 0.4  # Weight for the second input
+bias = 0.1  # Bias term
+t = 0.1  # Learning rate
+
+# Define the sigmoid activation function
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+# Training the perceptron
+for epoch in range(6000):  # Train for 6000 epochs
+    for i in range(4):  # Iterate over each input-output pair
+        # Calculate the perceptron output
+        ans = x[i][0] * w1 + x[i][1] * w2 + bias
+        result = sigmoid(ans)
+        
+        # Calculate the error
+        error = y[i] - result
+        
+        # Update weights and bias
+        w1 += t * error * x[i][0]
+        w2 += t * error * x[i][1]
+        bias += t * error
+
+# Display final results
+print("Final outputs after training:")
+for i in range(4):
+    # Calculate the perceptron output after training
+    ans = x[i][0] * w1 + x[i][1] * w2 + bias
+    result = sigmoid(ans)
+    
+    # Print the result
+    print(f"Input: {x[i]}, Output: {result:.4f}, Expected: {y[i]}")
