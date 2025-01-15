@@ -31,9 +31,7 @@ def create_simplified_cnn(input_shape=(32, 32, 3), num_classes=10):
     ])
     
     # Compile the model
-    model.compile(optimizer='adam',
-                  loss='categorical_crossentropy',
-                  metrics=['accuracy'])
+    model.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
     return model
 
 # Create the CNN model
