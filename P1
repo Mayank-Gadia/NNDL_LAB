@@ -3,41 +3,42 @@
 
 import numpy as np
 
-# Input values for the logic gate
-x = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])  # Inputs
-y = np.array([0, 0, 0, 1])  # Target outputs for AND gate
+# Input data: AND function
+x = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+y = np.array([0, 1, 1, 1])  # Target outputs for OR
 
-# Initialize weights, bias, and learning rate
-w1 = 0.2  # Weight for the first input
-w2 = 0.4  # Weight for the second input
-bias = 0.1  # Bias term
-t = 0.1  # Learning rate
+# Initialize weights and bias
+w1 = 0.8
+w2 = 0.9
+bias = 0.25
+learning_rate = 0.1
 
-# Define the sigmoid activation function
+# Sigmoid activation function
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
 
-# Training the perceptron
-for epoch in range(6000):  # Train for 6000 epochs
-    for i in range(4):  # Iterate over each input-output pair
-        # Calculate the perceptron output
-        ans = x[i][0] * w1 + x[i][1] * w2 + bias
-        result = sigmoid(ans)
-        
+# Training loop
+for epoch in range(5000000):
+    for i in range(4):
+        # Calculate the weighted input plus bias
+        z = x[i][0] * w1 + x[i][1] * w2 + bias
+        result = sigmoid(z)
+
         # Calculate the error
         error = y[i] - result
         
         # Update weights and bias
-        w1 += t * error * x[i][0]
-        w2 += t * error * x[i][1]
-        bias += t * error
+        w1 += learning_rate * error * x[i][0]
+        w2 += learning_rate * error * x[i][1]
+        bias += learning_rate * error
 
-# Display final results
-print("Final outputs after training:")
+# Testing the trained model
+print("Final weights:", w1, w2)
+print("Final bias:", bias)
+
+# Show results for all inputs
 for i in range(4):
-    # Calculate the perceptron output after training
-    ans = x[i][0] * w1 + x[i][1] * w2 + bias
-    result = sigmoid(ans)
-    
-    # Print the result
-    print(f"Input: {x[i]}, Output: {result:.4f}, Expected: {y[i]}")
+    z = x[i][0] * w1 + x[i][1] * w2 + bias
+    result = sigmoid(z)
+    print(f"Input: {x[i]}, Output: {result:.
+4f}, Predicted: {1 if result >= 0.5 else 0}")
