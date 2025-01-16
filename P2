@@ -2,12 +2,11 @@
               Use diabetes dataset, Cancer dataset and Sonar dataset. Activation functions – Sigmoid, tanh, ReLU or Softmax.'''
 
 # Install TensorFlow
-!pip install tensorflow
+#!pip install tensorflow
 
 import numpy as np
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 
@@ -17,8 +16,6 @@ X = data.data
 y = data.target  # 0 (malignant) or 1 (benign)
 
 # Preprocess the data
-# scaler = StandardScaler()
-# X = scaler.fit_transform(X)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Build the neural network model
