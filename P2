@@ -23,8 +23,8 @@ activation_function = 'sigmoid'
 
 model = Sequential()
 model.add(Dense(16, input_dim=X_train.shape[1], activation=activation_function))  # Hidden Layer 1
-model.add(Dense(8, activation=activation_function))                              # Hidden Layer 2
-model.add(Dense(1, activation='sigmoid'))                                       # Output Layer
+model.add(Dense(8, activation=activation_function))                               # Hidden Layer 2
+model.add(Dense(1, activation='sigmoid'))                                         # Output Layer
 
 # Compile the model
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
@@ -50,4 +50,4 @@ else:
     print("The model predicts: MALIGNANT (Cancer)")
 
 # Show true value for comparison
-print(f"True label: {'BENIGN' if y_test[sample_index] == 1 else 'MALIGNANT'}")
+print(f"True label: {'BENIGN' if y_test[52] == 1 else 'MALIGNANT'}")
